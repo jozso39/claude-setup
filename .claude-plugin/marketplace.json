@@ -5,10 +5,10 @@
   "metadata": { "description": "Jozef Čambora's Claude Code harness: the skills, agents and guard hooks he works with, as one installable plugin." },
   "plugins": [
     {
-      "name": "jozef-harness",
-      "source": "./plugins/jozef-harness",
+      "name": "my-setup",
+      "source": "./plugins/my-setup",
       "description": "Repo onboarding routine, fresh-context diff review, independent report validation and a Bash guard hook.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "skill"
     }
   ]

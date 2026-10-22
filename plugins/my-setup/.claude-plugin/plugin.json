@@ -1,6 +1,6 @@
 {
-  "name": "jozef-harness",
-  "version": "1.1.0",
+  "name": "my-setup",
+  "version": "1.2.0",
   "description": "Jozef Čambora's working harness for Claude Code: how to enter an unknown repo, how a change gets reviewed by a fresh context and how a data report gets validated. Prose guides, hooks enforce.",
   "author": { "name": "Jozef Čambora", "url": "https://cambora.cz" },
   "license": "MIT",

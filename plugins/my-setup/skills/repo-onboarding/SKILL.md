@@ -3,8 +3,8 @@ name: repo-onboarding
 description: >-
   The first fifteen minutes in a repository you do not know, before any change: read how it
   is built and tested, run the tests and the app, write a short CLAUDE.md if there is none,
-  then branch. Use when the user opens an unfamiliar repo, says "onboard", "get to know
-  this repo", "zorientuj se", or asks to add a feature or deploy a project you have not
+  render a one-page HTML map of the repo for the user, then branch. Use when the user opens
+  an unfamiliar repo, says "onboard", "get to know this repo", "zorientuj se", or asks to add a feature or deploy a project you have not
   worked in before. Not for repos that already have a CLAUDE.md you have read this session.
 argument-hint: "[task the user wants done afterwards]"
 ---
@@ -57,6 +57,23 @@ If the repo has none, write one now, from what you just verified, nothing invent
 If an `AGENTS.md` exists, make the first line of `CLAUDE.md` `@AGENTS.md` so it is loaded,
 and do not duplicate it. Keep it short: anything the agent can infer from the code does
 not belong in it.
+
+## 3b. Draw the map for the user: `.claude/repo-map.html`
+
+The user wants to see the repo, not read your notes. Write what you verified into a small
+JSON (purpose, stack, the exact commands, the baseline you measured, the request path as a
+list of steps, the layers with their main modules, the layout table, where a feature of the
+user's kind goes, do-not-touch, open questions) and render it:
+
+```bash
+python3 "${CLAUDE_PLUGIN_ROOT}/skills/repo-onboarding/scripts/repo-map.py" .claude/repo-map.json .claude/repo-map.html
+```
+
+The page is one screen: request path as a flow, layers as stacked boxes, commands and
+layout as tables; dark or light by the system. Open it for the user (`open` on macOS,
+`xdg-open` on Linux) and keep both files out of the commit (`.git/info/exclude`) unless the
+user wants them in the repo. The JSON schema is in the script's docstring; leave out what
+you did not verify rather than guessing.
 
 ## 4. Branch, then start the task
 

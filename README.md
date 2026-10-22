@@ -6,7 +6,7 @@ Read it before you install it: the hooks run shell commands, and that is the poi
 
 ```
 /plugin marketplace add jozso39/claude-setup
-/plugin install jozef-harness@jozso39
+/plugin install my-setup@jozso39
 ```
 
 Then, optionally, the prose part that no plugin can install:
@@ -15,11 +15,11 @@ Then, optionally, the prose part that no plugin can install:
 curl -fsSL https://raw.githubusercontent.com/jozso39/claude-setup/main/CLAUDE.global.md -o ~/.claude/CLAUDE.md
 ```
 
-## What is in `jozef-harness`
+## What is in `my-setup`
 
 | Piece | Kind | What it does | Enforced by |
 |---|---|---|---|
-| `repo-onboarding` | skill, auto | The first fifteen minutes in a repo you do not know: read README and CI, run tests before touching anything, write a 20-line `CLAUDE.md` if missing, branch | prose |
+| `repo-onboarding` | skill, auto | The first fifteen minutes in a repo you do not know: read README and CI, run tests before touching anything, write a 20-line `CLAUDE.md` if missing, render a one-page HTML map of the repo (request path, layers, commands), branch | prose + `repo-map.py` |
 | `fresh-review` | skill, auto | A subagent with an empty context reviews the diff against the task statement; the session fixes, up to two rounds | prose |
 | `report-validation` | skill, `/report-validation` | An independent `report-validator` agent reads a data report as its audience would and recomputes its numbers from the data; three rounds max | agent stop hook: must end with `VERDICT:` |
 | `guard.sh` | PreToolUse hook on Bash | Denies force-push, hard reset, blanket discard of changes, dropping stashes, `git clean`, recursive delete outside the tree, nested `--dangerously-skip-permissions` | hook, exit 2 |
@@ -44,6 +44,6 @@ constraints.
 
 ## Trust
 
-Everything the plugin runs is in this repo: two shell scripts under 60 lines each and one
-Python renderer. No network calls, no secrets, nothing written outside the repo you work in.
+Everything the plugin runs is in this repo: two shell scripts under 60 lines each and two
+Python renderers. No network calls, no secrets, nothing written outside the repo you work in.
 MIT.
