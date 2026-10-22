@@ -55,7 +55,7 @@ somewhere else.
 
 ## 2. Spawn the validator: paths and nothing else
 
-One `Agent` call, `subagent_type: report-validator`, `run_in_background: true` (a round
+One `Agent` call, `subagent_type: jozef-harness:report-validator` (plain `report-validator` when installed in `~/.claude/agents/`), `run_in_background: true` (a round
 takes a while). Agent definitions load when a session starts, so a session older than
 the plugin install does not know the type: then spawn `general-purpose`
 with `model: opus`, `effort: xhigh` and open the message with "You are acting as the

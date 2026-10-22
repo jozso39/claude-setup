@@ -37,7 +37,7 @@ is nudged to continue. Set it to `needs-user` **before** you stop to ask the use
 
 ## 1. Plan
 
-- Start `trio-planner` (Agent tool, `subagent_type: "trio-planner"`) with the task in the user's
+- Start `trio-planner` (Agent tool, `subagent_type: "jozef-harness:trio-planner"`; the agents are listed with the plugin prefix, or without it when installed in `~/.claude/agents/`) with the task in the user's
   words, the run folder and the profile path. Skip the planner only when the user already gave
   explicit acceptance criteria; then write `contract.md` from them yourself, unchanged.
 - The planner ends with `STATUS: READY` or `STATUS: NEEDS-USER`. On NEEDS-USER, set
