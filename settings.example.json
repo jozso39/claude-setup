@@ -1,0 +1,35 @@
+{
+  "$comment": "Copy the permissions block into ~/.claude/settings.json (or .claude/settings.json in a repo). A plugin cannot ship these: Claude Code drops every settings key except `agent` and `subagentStatusLine` from a plugin. The guard hook in my-setup refuses the same Bash commands at tool-call time; these rules stop them one layer earlier and also cover files.",
+  "permissions": {
+    "defaultMode": "default",
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(git checkout -- .*)",
+      "Bash(git restore .*)",
+      "Bash(git stash drop*)",
+      "Bash(git stash clear*)",
+      "Bash(git clean*)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~*)",
+      "Bash(sudo *)",
+      "Bash(* --dangerously-skip-permissions*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Write(./.env)",
+      "Write(./.env.*)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(docker push*)",
+      "Bash(gcloud run deploy*)",
+      "Bash(kubectl apply*)",
+      "Bash(terraform apply*)"
+    ]
+  }
+}

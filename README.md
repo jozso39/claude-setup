@@ -15,6 +15,16 @@ Then, optionally, the prose part that no plugin can install:
 curl -fsSL https://raw.githubusercontent.com/jozso39/claude-setup/main/CLAUDE.global.md -o ~/.claude/CLAUDE.md
 ```
 
+## Deny rules: not a plugin thing
+
+A plugin's `settings.json` is read for `agent` and `subagentStatusLine` only; `permissions`
+is dropped at load. So the deny and ask rules ship as
+[`settings.example.json`](settings.example.json): copy its `permissions` block into
+`~/.claude/settings.json` (or a repo's `.claude/settings.json`). On a company machine they
+belong in `managed-settings.json`, which nothing in user settings can override. The guard
+hook in the plugin refuses the same Bash commands one layer later, so you get the rules
+even where the settings file was not copied.
+
 ## First prompt after installing
 
 Plan mode first (`Shift+Tab` until it says plan), then:
