@@ -22,12 +22,11 @@ curl -fsSL https://raw.githubusercontent.com/jozso39/claude-setup/main/CLAUDE.gl
 | `repo-onboarding` | skill, auto | The first fifteen minutes in a repo you do not know: read README and CI, run tests before touching anything, write a 20-line `CLAUDE.md` if missing, branch | prose |
 | `fresh-review` | skill, auto | A subagent with an empty context reviews the diff against the task statement; the session fixes, up to two rounds | prose |
 | `report-validation` | skill, `/report-validation` | An independent `report-validator` agent reads a data report as its audience would and recomputes its numbers from the data; three rounds max | agent stop hook: must end with `VERDICT:` |
-| `trio` | skill, `/trio` | Planner → generator ⇄ evaluator for a feature: spec and testable contract, you approve, the generator builds on `trio/<slug>`, a fresh evaluator runs the app and judges; three rounds max | write-guard hooks (who may write what), stop hooks (`STATUS:`/`VERDICT:` lines), Stop guard on the session |
 | `guard.sh` | PreToolUse hook on Bash | Denies force-push, hard reset, blanket discard of changes, dropping stashes, `git clean`, recursive delete outside the tree, nested `--dangerously-skip-permissions` | hook, exit 2 |
 
-Agents: `report-validator`, `trio-planner`, `trio-generator`, `trio-evaluator`. All run on
-Opus with a fixed tool list and their own hooks, so the orchestrating session cannot talk
-them out of their constraints.
+Agent: `report-validator`. It runs on Opus with a fixed tool list and its own stop hook (it
+must end with a `VERDICT:` line), so the orchestrating session cannot talk it out of its
+constraints.
 
 ## The idea behind it
 
@@ -42,10 +41,9 @@ them out of their constraints.
 ## What I use next to it
 
 - [johnnyvizz/claude-kit](https://github.com/johnnyvizz/claude-kit): `savvy-flow` (orchestrator with tiered worker agents) and the `savvy-progress` panel. Not mine; installed as a second marketplace.
-- Project-level `.claude/trio.md` profiles (how to run the app in isolation, what must never be touched) live in each repo, not here.
 
 ## Trust
 
-Everything the plugin runs is in this repo: four shell scripts under 60 lines each and one
-Python renderer. No network calls, no secrets, nothing written outside the repo you work in
-except the `.trio/` run folder. MIT.
+Everything the plugin runs is in this repo: two shell scripts under 60 lines each and one
+Python renderer. No network calls, no secrets, nothing written outside the repo you work in.
+MIT.

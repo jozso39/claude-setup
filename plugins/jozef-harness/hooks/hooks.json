@@ -1,18 +1,11 @@
 {
-  "description": "Two guards. PreToolUse on Bash denies the handful of commands that are never worth an agent's autonomy (force-push, hard reset, recursive delete outside the repo, dropping stashes). Stop keeps a running trio loop from being abandoned silently; it nudges once and never traps a session.",
+  "description": "One guard. PreToolUse on Bash denies the handful of commands that are never worth an agent's autonomy (force-push, hard reset, recursive delete outside the repo, dropping stashes).",
   "hooks": {
     "PreToolUse": [
       {
         "matcher": "Bash",
         "hooks": [
           { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/guard.sh\"", "timeout": 5 }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/skills/trio/scripts/stop-guard.sh\"", "timeout": 5 }
         ]
       }
     ]
