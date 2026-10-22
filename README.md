@@ -15,6 +15,21 @@ Then, optionally, the prose part that no plugin can install:
 curl -fsSL https://raw.githubusercontent.com/jozso39/claude-setup/main/CLAUDE.global.md -o ~/.claude/CLAUDE.md
 ```
 
+## First prompt after installing
+
+Plan mode first (`Shift+Tab` until it says plan), then:
+
+```
+Onboard me in this repo. Read how it is built and tested, run the tests and the app
+before changing anything and tell me the baseline, write a short CLAUDE.md if there is
+none, and render the repo map so I can see the structure. Then stop; I will give you the
+task after I have read the map.
+```
+
+That one message triggers `repo-onboarding`. When the task is done, the second prompt is
+`review it`, which triggers `fresh-review` before you commit. `/report-validation <file>`
+is explicit, for data reports only.
+
 ## What is in `my-setup`
 
 | Piece | Kind | What it does | Enforced by |
