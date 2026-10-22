@@ -47,6 +47,7 @@ is explicit, for data reports only.
 | `repo-onboarding` | skill, auto | The first fifteen minutes in a repo you do not know: read README and CI, run tests before touching anything, write a 20-line `CLAUDE.md` if missing, render a one-page HTML map of the repo (request path, layers, commands), branch | prose + `repo-map.py` |
 | `fresh-review` | skill, auto | A subagent with an empty context reviews the diff against the task statement; the session fixes, up to two rounds | prose |
 | `report-validation` | skill, `/report-validation` | An independent `report-validator` agent reads a data report as its audience would and recomputes its numbers from the data; three rounds max | agent stop hook: must end with `VERDICT:` |
+| `rules/coding.md` | SessionStart hook | Adds five coding rules to every session, as a CLAUDE.md would: reuse before writing a helper, extract on the second copy, no single-implementation abstractions, one job per function, follow the module's patterns. Edits no file; disable the plugin and they are gone | hook |
 | `guard.sh` | PreToolUse hook on Bash | Denies force-push, hard reset, blanket discard of changes, dropping stashes, `git clean`, recursive delete outside the tree, nested `--dangerously-skip-permissions` | hook, exit 2 |
 
 Agent: `report-validator`. It runs on Opus with a fixed tool list and its own stop hook (it
@@ -69,6 +70,6 @@ constraints.
 
 ## Trust
 
-Everything the plugin runs is in this repo: two shell scripts under 60 lines each and two
+Everything the plugin runs is in this repo: three shell scripts under 60 lines each and two
 Python renderers. No network calls, no secrets, nothing written outside the repo you work in.
 MIT.

@@ -25,6 +25,14 @@ harness that lives in prose. Everything here guides; the hooks in the plugin enf
 - Report only numbers that were actually computed; evaluate everything in scope and tag what is incomplete instead of skipping it. A wrong claim costs more than a missing one.
 - Before changing system state, check that the evidence supports that specific change.
 
+## Code
+The my-setup plugin adds these at session start; keep them here only if you do not install it.
+- Before writing a helper, search the repo for an existing one and reuse it.
+- Don't copy a block of logic. Extract it once it appears a second time.
+- Don't add an interface, base class or factory that has only one implementation or one caller.
+- Keep a function to one job. If you need "and" to describe it, split it.
+- Follow the patterns already in the file and module, even where you would design it differently.
+
 ## Working on this machine
 - Parallel Bash calls share one working directory: use `git -C <abs>` and absolute paths when two repos are involved, and verify with `git -C <abs> status` afterwards.
 - One git worktree per task, next to the repo (`<parent>/worktrees/<repo>-<slug>`), created after `git fetch` from the remote copy of whatever branch the task builds on; local branches are stale.
