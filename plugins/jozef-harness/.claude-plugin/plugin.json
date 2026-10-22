@@ -1,0 +1,8 @@
+{
+  "name": "jozef-harness",
+  "version": "1.0.0",
+  "description": "Jozef Čambora's working harness for Claude Code: how to enter an unknown repo, how a change gets reviewed by a fresh context, how a data report gets validated, and the trio loop for features. Prose guides, hooks enforce.",
+  "author": { "name": "Jozef Čambora", "url": "https://cambora.cz" },
+  "license": "MIT",
+  "keywords": ["harness", "review", "tdd", "onboarding", "evals", "guardrails"]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "jozso39",
+  "owner": { "name": "Jozef Čambora", "url": "https://github.com/jozso39" },
+  "metadata": { "description": "Jozef Čambora's Claude Code harness: the skills, agents and guard hooks he works with, as one installable plugin." },
+  "plugins": [
+    {
+      "name": "jozef-harness",
+      "source": "./plugins/jozef-harness",
+      "description": "Repo onboarding routine, fresh-context diff review, independent report validation, the trio (planner → generator ⇄ evaluator) and a Bash guard hook.",
+      "version": "1.0.0",
+      "category": "skill"
+    }
+  ]
+}
